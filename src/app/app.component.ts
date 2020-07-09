@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
       gender: new FormControl(this.genders[0]),
       hobbies: new FormArray([]),
+      channels: new FormArray([]),
     });
   }
 
@@ -34,5 +35,10 @@ export class AppComponent implements OnInit {
     const controls = new FormControl("", Validators.required);
     // get hobbies control - typecast to FormArray- push control defined to array.
     (<FormArray>this.signupForm.get("hobbies")).push(controls);
+  }
+
+  onAddChannels() {
+    const controls = new FormControl("", Validators.required);
+    (<FormArray>this.signupForm.get("channels")).push(controls);
   }
 }

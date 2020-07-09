@@ -2,46 +2,119 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-
         <div class="form-group">
           <label for="username">Username</label>
-          <input formControlName="username" type="text" id="username" class="form-control" name="username" />
-          <small class="text-primary" *ngIf="
+          <input
+            formControlName="username"
+            type="text"
+            id="username"
+            class="form-control"
+            name="username"
+          />
+          <small
+            class="text-primary"
+            *ngIf="
               signupForm.get('username').invalid &&
               signupForm.get('username').touched
-            ">please add a username</small>
+            "
+            >please add a username</small
+          >
         </div>
         <div class="form-group">
           <label for="email">email</label>
-          <input formControlName="email" type="text" id="email" class="form-control" name="email" />
-          <small class="text-primary" *ngIf="
+          <input
+            formControlName="email"
+            type="text"
+            id="email"
+            class="form-control"
+            name="email"
+          />
+          <small
+            class="text-primary"
+            *ngIf="
               signupForm.get('email').invalid && signupForm.get('email').touched
-            ">please add an email</small>
+            "
+            >please add an email</small
+          >
         </div>
         <div class="form-group">
           <label for="phone">Phone</label>
-          <input type="number" name="phone" id="phone" class="form-control" formControlName="phone" />
-          <small class="text-primary" *ngIf="
+          <input
+            type="number"
+            name="phone"
+            id="phone"
+            class="form-control"
+            formControlName="phone"
+          />
+          <small
+            class="text-primary"
+            *ngIf="
               signupForm.get('phone').invalid && signupForm.get('phone').touched
-            ">please add phone</small>
+            "
+            >please add phone</small
+          >
         </div>
 
         <div class="radio" *ngFor="let gender of genders">
           <label>
-            <input formControlName="gender" type="radio" name="gender" [value]="gender" />{{ gender }}
+            <input
+              formControlName="gender"
+              type="radio"
+              name="gender"
+              [value]="gender"
+            />{{ gender }}
           </label>
         </div>
 
         <div formArrayName="hobbies">
           <h1 class="display-5">Hobbies</h1>
-          <button class="btn btn-default" type="button" (click)="onAddHobby()">Add Hobby</button>
-          <div class="form-group" *ngFor="let hobbyControl of signupForm.get('hobbies').controls; let i = index">
-            <input type="text" name="hobby" id="hobby" [formControlName]="i" class="form-control">
+          <button class="btn btn-default" type="button" (click)="onAddHobby()">
+            Add Hobby
+          </button>
+          <div
+            class="form-group"
+            *ngFor="
+              let hobbyControl of signupForm.get('hobbies').controls;
+              let i = index
+            "
+          >
+            <input
+              type="text"
+              name="hobby"
+              id="hobby"
+              [formControlName]="i"
+              class="form-control"
+            />
           </div>
         </div>
 
+        <div formArrayName="channels">
+          <div class="form-group">
+            <h1 class="display-4">Your Fav Channels</h1>
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="onAddChannels()"
+            >
+              Add Channels
+            </button>
+            <div
+              class="form-group"
+              *ngFor="
+                let channelControls of signupForm.get('channels').controls;
+                let j = index
+              "
+            >
+              <input type="text" [formControlName]="j" class="form-control" />
+            </div>
+          </div>
+        </div>
 
-        <button [disabled]="!signupForm.valid" class="btn btn-primary" type="submit">
+        <button
+          [disabled]="!signupForm.valid"
+          class="btn btn-primary"
+          type="submit"
+        >
           Submit
         </button>
       </form>
